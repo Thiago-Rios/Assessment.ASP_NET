@@ -83,6 +83,7 @@ namespace Assessment.API.Controllers
         public async Task<ActionResult<Autor>> DeleteAutor(int id)
         {
             var autor = await _context.Autores.Include(x => x.Livros).FirstOrDefaultAsync(x => x.Id == id);
+
             if (autor == null)
             {
                 return NotFound();

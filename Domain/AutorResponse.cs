@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public class Autor
+    public class AutorResponse
     {
         public int Id { get; set; }
         public string Nome { get; set; }

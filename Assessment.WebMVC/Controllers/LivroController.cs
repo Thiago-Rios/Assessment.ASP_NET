@@ -9,14 +9,14 @@ using RestSharp;
 
 namespace Assessment.WebMVC.Controllers
 {
-    public class AutorController : Controller
+    public class LivroController : Controller
     {
         public ActionResult Index()
         {
             var restClient = new RestClient();
 
-            var request = new RestRequest("http://localhost:5000/api/autores", DataFormat.Json);
-            var response = restClient.Get<List<Autor>>(request);
+            var request = new RestRequest("http://localhost:5000/api/livros", DataFormat.Json);
+            var response = restClient.Get<List<Livro>>(request);
 
             return View(response.Data);
         }
@@ -25,8 +25,8 @@ namespace Assessment.WebMVC.Controllers
         {
             var restClient = new RestClient();
 
-            var request = new RestRequest("http://localhost:5000/api/autores/" + id, DataFormat.Json);
-            var response = restClient.Get<Autor>(request);
+            var request = new RestRequest("http://localhost:5000/api/livros/" + id, DataFormat.Json);
+            var response = restClient.Get<Livro>(request);
 
             return View(response.Data);
         }
@@ -38,7 +38,7 @@ namespace Assessment.WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Autor autor)
+        public ActionResult Create(Livro livro)
         {
             if (!ModelState.IsValid)
             {
@@ -47,36 +47,36 @@ namespace Assessment.WebMVC.Controllers
 
             var restClient = new RestClient();
 
-            var request = new RestRequest("http://localhost:5000/api/autores", DataFormat.Json);
-            request.AddJsonBody(autor);
-            var response = restClient.Post<Autor>(request);
+            var request = new RestRequest("http://localhost:5000/api/livros", DataFormat.Json);
+            request.AddJsonBody(livro);
+            var response = restClient.Post<Livro>(request);
 
-            return Redirect("/autor/index");
+            return Redirect("/livro/index");
         }
 
         public ActionResult Edit(int id)
         {
             var restClient = new RestClient();
 
-            var request = new RestRequest("http://localhost:5000/api/autores/" + id, DataFormat.Json);
-            var response = restClient.Get<Autor>(request);
+            var request = new RestRequest("http://localhost:5000/api/livros/" + id, DataFormat.Json);
+            var response = restClient.Get<Livro>(request);
 
             return View(response.Data);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Autor autor)
+        public ActionResult Edit(int id, Livro livro)
         {
             try
             {
                 var restClient = new RestClient();
 
-                var request = new RestRequest("http://localhost:5000/api/autores/" + id, DataFormat.Json);
-                request.AddJsonBody(autor);
-                var response = restClient.Put<Autor>(request);
+                var request = new RestRequest("http://localhost:5000/api/livros/" + id, DataFormat.Json);
+                request.AddJsonBody(livro);
+                var response = restClient.Put<Livro>(request);
 
-                return Redirect("/autor/index");
+                return Redirect("/livro/index");
             }
             catch
             {
@@ -88,8 +88,8 @@ namespace Assessment.WebMVC.Controllers
         {
             var novoClient = new RestClient();
 
-            var request = new RestRequest("http://localhost:5000/api/autores/" + id, DataFormat.Json);
-            var response = novoClient.Get<Autor>(request);
+            var request = new RestRequest("http://localhost:5000/api/livros/" + id, DataFormat.Json);
+            var response = novoClient.Get<Livro>(request);
 
             return View(response.Data);
         }
@@ -102,10 +102,10 @@ namespace Assessment.WebMVC.Controllers
             {
                 var client = new RestClient();
 
-                var request = new RestRequest("http://localhost:5000/api/autores/" + id, DataFormat.Json);
-                var response = client.Delete<Autor>(request);
+                var request = new RestRequest("http://localhost:5000/api/livros/" + id, DataFormat.Json);
+                var response = client.Delete<Livro>(request);
 
-                return Redirect("/autor/index");
+                return Redirect("/livro/index");
             }
             catch
             {
