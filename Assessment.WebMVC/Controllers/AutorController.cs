@@ -59,7 +59,7 @@ namespace Assessment.WebMVC.Controllers
             var restClient = new RestClient();
 
             var request = new RestRequest("http://localhost:5000/api/autores/" + id, DataFormat.Json);
-            var response = restClient.Get<Autor>(request);
+            var response = restClient.Get<AutorResponse>(request);
 
             return View(response.Data);
         }
