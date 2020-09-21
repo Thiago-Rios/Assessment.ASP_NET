@@ -33,6 +33,12 @@ namespace Assessment.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            var restClient = new RestClient();
+
+            var request = new RestRequest("http://localhost:5000/api/autores", DataFormat.Json);
+            var response = restClient.Get<List<Autor>>(request);
+            ViewBag.ListaAutores = response.Data;
+
             return View();
         }
 
