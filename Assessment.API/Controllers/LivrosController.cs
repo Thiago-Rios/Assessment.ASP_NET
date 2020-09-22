@@ -24,13 +24,13 @@ namespace Assessment.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Livro>>> GetLivros()
         {
-            return await _context.Livros.ToListAsync();
+            return await _context.Livros.Include(x => x.Autor).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Livro>> GetLivro(int id)
         {
-            var livro = await _context.Livros.FindAsync(id);
+            var livro = await _context.Livros.Include(x => x.Autor).FirstOrDefaultAsync(x => x.Id == id);
 
             if (livro == null)
             {
